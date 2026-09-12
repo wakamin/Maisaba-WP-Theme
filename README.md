@@ -1,6 +1,6 @@
-# Maisaba - WordPress Classic Base Theme with Tailwind CSS
+# Maisaba - WordPress Classic Theme with Tailwind CSS v4
 
-A modern, developer-friendly **WordPress Classic Theme** boilerplate powered by **Tailwind CSS v3**, **Vite**, **PostCSS**, and **@tailwindcss/typography**.
+A custom **WordPress Classic Theme** powered by **Tailwind CSS v4**, the first-party **Tailwind Vite plugin**, **Swiper**, and **@tailwindcss/typography**.
 
 Designed specifically for classic theme development (not block theme/FSE), giving you full control over PHP templates and HTML semantics while enjoying modern utility-first CSS and lightning-fast asset compilation.
 
@@ -9,7 +9,7 @@ Designed specifically for classic theme development (not block theme/FSE), givin
 ## 🚀 Features
 
 - **WordPress Classic Architecture**: Uses traditional PHP template hierarchy (`header.php`, `footer.php`, `index.php`, `single.php`, `page.php`, `archive.php`, `search.php`, `404.php`, `comments.php`).
-- **Tailwind CSS v3**: Fully configured with content purging across all PHP and JS files.
+- **Tailwind CSS v4**: CSS-first design tokens with explicit PHP and JavaScript source detection.
 - **Tailwind Typography**: Automatic, beautiful styling for `the_content()` output with `prose prose-slate lg:prose-lg max-w-none`.
 - **Accessible Navigation**: Desktop menu with hover/keyboard dropdowns and a fully responsive slide-out mobile drawer with `aria-*` accessibility.
 - **Custom Nav Walker**: `Maisaba_Nav_Walker` seamlessly integrates WordPress menus (`wp_nav_menu`) with Tailwind utility classes.
@@ -57,8 +57,6 @@ maisaba/
 │   ├── css/style.css
 │   └── js/main.js
 ├── package.json
-├── tailwind.config.js
-├── postcss.config.js
 └── vite.config.js
 ```
 
@@ -88,20 +86,13 @@ Creates minified, purged, and optimized CSS & JS in `dist/`.
 
 ## 🎨 Customizing Theme Colors & Styles
 
-### Modifying Tailwind Colors
-Open `tailwind.config.js` to modify the primary palette or add your own colors:
+### Modifying Tailwind Tokens
+Open `src/css/main.css` and update the CSS-first `@theme` block:
 
 ```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        50: '#f0fdfa',
-        ...
-        600: '#0d9488', // Change brand accent here
-      }
-    }
-  }
+@theme {
+  --color-moss: #6f8e6f;
+  --color-cream: #fefdf9;
 }
 ```
 

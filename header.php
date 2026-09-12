@@ -20,9 +20,9 @@ if (!defined('ABSPATH')) {
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<div id="page" class="site min-h-screen flex flex-col justify-between">
+<div id="page" class="site min-h-screen flex flex-col">
     <a class="screen-reader-text skip-link" href="#primary"><?php esc_html_e('Skip to content', 'maisaba'); ?></a>
 
     <?php get_template_part('template-parts/navigation'); ?>
 
-    <div id="content" class="site-content flex-grow py-8 md:py-12">
+    <div id="content" class="site-content flex-grow<?php echo is_front_page() ? '' : ' pt-28 pb-12'; ?>">

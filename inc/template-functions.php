@@ -26,7 +26,7 @@ function maisaba_body_classes($classes) {
         $classes[] = 'no-sidebar';
     }
 
-    $classes[] = 'bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col antialiased';
+    $classes[] = 'bg-cream text-ink font-sans min-h-screen flex flex-col antialiased';
 
     return $classes;
 }

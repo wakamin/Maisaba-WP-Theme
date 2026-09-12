@@ -131,10 +131,18 @@ function maisaba_scripts() {
     $theme_dir = get_template_directory();
     $theme_uri = get_template_directory_uri();
 
+    // Google Fonts alternatives for the Karaya-inspired visual system.
+    wp_enqueue_style(
+        'maisaba-fonts',
+        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap',
+        [],
+        null
+    );
+
     // Theme CSS
     $css_path = '/dist/css/style.css';
     $css_version = file_exists($theme_dir . $css_path) ? filemtime($theme_dir . $css_path) : MAISABA_VERSION;
-    wp_enqueue_style('maisaba-tailwind', $theme_uri . $css_path, [], $css_version);
+    wp_enqueue_style('maisaba-tailwind', $theme_uri . $css_path, ['maisaba-fonts'], $css_version);
 
     // Root style.css fallback/child theme support
     wp_enqueue_style('maisaba-style', get_stylesheet_uri(), ['maisaba-tailwind'], MAISABA_VERSION);
@@ -156,3 +164,4 @@ add_action('wp_enqueue_scripts', 'maisaba_scripts');
 require_once get_template_directory() . '/inc/nav-walker.php';
 require_once get_template_directory() . '/inc/template-tags.php';
 require_once get_template_directory() . '/inc/template-functions.php';
+require_once get_template_directory() . '/inc/homepage-sections.php';
