@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased selection:bg-primary-500 selection:text-white;
+  }
+}
+
+@layer components {
+  /* WordPress Core Screen Reader Accessible Text */
+  .screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+  }
+
+  .screen-reader-text:focus {
+    background-color: #f1f5f9;
+    border-radius: 0.375rem;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    clip-path: none;
+    color: #0f172a;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    height: auto;
+    left: 1rem;
+    line-height: normal;
+    padding: 0.875rem 1.25rem;
+    text-decoration: none;
+    top: 1rem;
+    width: auto;
+    z-index: 100000;
+  }
+
+  /* WordPress Content Alignments */
+  .alignleft {
+    @apply float-left mr-6 mb-4 clear-left;
+  }
+
+  .alignright {
+    @apply float-right ml-6 mb-4 clear-right;
+  }
+
+  .aligncenter {
+    @apply block mx-auto mb-4 clear-both;
+  }
+
+  .alignwide {
+    @apply max-w-5xl mx-auto;
+  }
+
+  .alignfull {
+    @apply w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] max-w-none;
+  }
+
+  .wp-caption {
+    @apply max-w-full mb-4 text-center;
+  }
+
+  .wp-caption-text {
+    @apply text-xs text-slate-500 mt-2 italic;
+  }
+
+  /* Sticky Post Badge / Highlight */
+  .sticky {
+    @apply ring-2 ring-primary-400 ring-offset-2;
+  }
+
+  /* Widget & Content Helpers */
+  .widget ul {
+    @apply space-y-2;
+  }
+
+  .widget a {
+    @apply text-slate-600 hover:text-primary-600 transition-colors;
+  }
+}

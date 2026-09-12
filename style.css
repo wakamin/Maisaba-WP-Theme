@@ -1,0 +1,23 @@
+/*
+Theme Name: Maisaba
+Theme URI: https://example.com/maisaba
+Author: Maisaba
+Author URI: https://example.com/
+Description: A modern, high-performance WordPress classic base theme built with Tailwind CSS.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: maisaba
+Tags: blog, custom-background, custom-logo, custom-menu, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+
+Maisaba WordPress Theme, (C) 2026.
+Distributed under the terms of the GNU GPL v2 or later.
+*/
+
+/*
+ Note: Compiled theme styles are located in dist/css/style.css
+ This file is reserved for WordPress theme identification and custom overrides.
+*/
