@@ -35,7 +35,7 @@ function maisaba_render_home_hero() {
 
 function maisaba_render_home_welcome() {
     ?>
-    <section class="home-section flex min-h-svh items-center bg-cream py-28 lg:py-44">
+    <section class="home-section welcome-section flex min-h-svh items-center bg-cream py-28 lg:py-44">
         <img class="welcome-photo welcome-photo--left reveal" data-reveal="left" src="<?php echo esc_url(maisaba_asset_url('intro-left.webp')); ?>" alt="Karaya villa bedroom" width="443" height="699" loading="lazy">
         <img class="welcome-photo welcome-photo--right reveal" data-reveal="right" src="<?php echo esc_url(maisaba_asset_url('intro-right.webp')); ?>" alt="Karaya private pool" width="443" height="443" loading="lazy">
         <div class="m-container relative z-10 text-center">
@@ -60,7 +60,7 @@ function maisaba_render_home_villas() {
         ['Connecting One-Bedroom Pool Villa', '110sqm', 'King Bed', '2 Person', 'villa-connecting.webp', 'https://www.karayavillasumalas.com/villas/connecting-one-bedroom-pool-villa'],
     ];
     ?>
-    <section class="home-section bg-cream pt-12 lg:pt-20">
+    <section class="home-section villas-section bg-cream pt-12 lg:pt-20">
         <div class="m-container mb-12 text-center">
             <h2 class="display-title reveal text-[clamp(3.25rem,5vw,5rem)] text-moss">Our Villas</h2>
             <p class="section-copy reveal mx-auto mt-6 max-w-4xl">More than a place to stay, each villa is a private retreat created for comfort, connection, and complete peace of mind.</p>
@@ -89,7 +89,7 @@ function maisaba_render_home_villas() {
 
 function maisaba_render_home_about() {
     ?>
-    <section class="home-section grain-section flex min-h-svh items-center py-28 lg:py-44">
+    <section class="home-section about-section grain-section flex min-h-svh items-center py-28 lg:py-44">
         <img class="welcome-photo welcome-photo--left reveal" data-reveal="left" src="<?php echo esc_url(maisaba_asset_url('about-left.webp')); ?>" alt="Karaya Umalas Villas" width="600" height="750" loading="lazy">
         <img class="welcome-photo welcome-photo--right reveal" data-reveal="right" src="<?php echo esc_url(maisaba_asset_url('about-right.webp')); ?>" alt="Karaya Umalas Villas" width="600" height="750" loading="lazy">
         <div class="m-container relative z-10 text-center text-white">
@@ -169,7 +169,7 @@ function maisaba_get_experiences() {
 function maisaba_render_home_experiences() {
     $experiences = maisaba_get_experiences();
     ?>
-    <section class="home-section grain-section py-28 lg:py-40">
+    <section class="home-section experiences-section grain-section py-28 lg:py-40">
         <div class="m-container">
             <h2 class="display-title reveal mx-auto mb-16 max-w-5xl text-center text-[clamp(4rem,7vw,7rem)] text-white">Explore Karaya Experiences</h2>
             <div class="experience-layout">
@@ -179,7 +179,7 @@ function maisaba_render_home_experiences() {
                             <button class="experience-tab__trigger" type="button" aria-expanded="<?php echo 0 === $index ? 'true' : 'false'; ?>" data-experience-tab="<?php echo esc_attr($index); ?>">
                                 <span class="experience-tab__label"><?php echo esc_html($experience[0]); ?></span>
                             </button>
-                            <div class="experience-tab__panel"><div class="pt-4 text-base font-light leading-relaxed text-moss-light"><p><?php echo esc_html($experience[1]); ?></p><a class="btn btn-light mt-5" href="<?php echo esc_url($experience[3]); ?>">Explore</a></div></div>
+                            <div class="experience-tab__panel"><div><div class="pt-4 text-base font-light leading-relaxed text-moss-light"><p><?php echo esc_html($experience[1]); ?></p><a class="btn btn-light mt-5" href="<?php echo esc_url($experience[3]); ?>">Explore</a></div></div></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -222,7 +222,7 @@ function maisaba_render_home_reviews() {
                 <div class="swiper-wrapper">
                     <?php foreach ($reviews as $review) : ?>
                         <blockquote class="swiper-slide review-slide">
-                            <p class="font-display text-[clamp(2rem,3.2vw,3.5rem)] leading-tight"><?php echo esc_html($review[0]); ?></p>
+                            <p class="review-quote font-display text-[clamp(2rem,3.2vw,3.5rem)] leading-tight"><?php echo esc_html($review[0]); ?></p>
                             <div class="review-stars mt-5" aria-label="5 out of 5 stars">★★★★★</div>
                             <p class="mx-auto mt-7 max-w-5xl text-base font-light leading-[1.75] lg:text-xl"><?php echo esc_html($review[1]); ?></p>
                             <cite class="mt-7 block text-sm font-medium not-italic uppercase tracking-widest"><?php echo esc_html($review[2]); ?></cite>

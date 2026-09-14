@@ -132,11 +132,10 @@
 
   .villas-grid { display: flex; }
   .villas-grid .swiper-wrapper { display: flex; width: 100%; }
-  .villa-card { position: relative; flex: 1 1 0; height: clamp(32rem, 48vw, 42rem); overflow: hidden; transition: flex-grow .8s cubic-bezier(.4, 0, .2, 1); }
+  .villa-card { position: relative; flex: 1 1 0; height: clamp(32rem, 48vw, 42rem); overflow: hidden; }
   .villa-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgb(0 0 0 / 68%)); }
   .villa-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-karaya); }
-  .villa-card__content { position: absolute; z-index: 2; right: 1.5rem; bottom: 2rem; left: 1.5rem; color: white; text-align: center; }
-  .villa-card__details { opacity: 0; transform: translateY(1rem); transition: opacity .5s, transform .5s; }
+  .villa-card__content { position: absolute; z-index: 2; right: 1.5rem; bottom: 2rem; left: 1.5rem; color: white; text-align: center; opacity: 0; transform: translateY(1rem); pointer-events: none; transition: opacity .5s, transform .5s; }
 
   .concierge-layout { display: grid; grid-template-columns: minmax(18rem, .75fr) 1.5fr; gap: clamp(3rem, 7vw, 9rem); align-items: stretch; }
   .concierge-card img { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; }
@@ -151,7 +150,7 @@
   .experience-tab__trigger { width: 100%; color: white; text-align: left; cursor: pointer; }
   .experience-tab__label { display: block; font-size: clamp(1.1rem, 1.45vw, 1.5rem); font-weight: 300; text-transform: uppercase; }
   .experience-tab__panel { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 1s cubic-bezier(.4, 0, .2, 1), opacity 1s cubic-bezier(.4, 0, .2, 1); }
-  .experience-tab__panel > div { overflow: hidden; }
+  .experience-tab__panel > div { min-height: 0; overflow: hidden; }
   .experience-tab.is-open .experience-tab__panel { grid-template-rows: 1fr; opacity: 1; }
   .experience-images { aspect-ratio: 600 / 787; overflow: hidden; }
   .experience-image-track { width: 100%; transform: translateY(0); transition: transform 2s cubic-bezier(.4, 0, .2, 1); will-change: transform; }
@@ -191,13 +190,15 @@
 @media (max-width: 1024px) {
   .m-container { width: min(100% - 2rem, 60rem); }
   .welcome-photo { display: none; }
-  .welcome-mobile-photos { display: flex; gap: 1rem; width: calc(100% - 2rem); margin: 3rem 0 0 2rem; overflow-x: auto; scrollbar-width: none; }
-  .welcome-mobile-photos img { width: 67vw; max-width: 25rem; flex: 0 0 auto; aspect-ratio: 4 / 5; object-fit: cover; }
+  .welcome-section, .about-section { flex-direction: column; }
+  .welcome-section > .m-container, .about-section > .m-container { flex: 0 0 auto; }
+  .welcome-mobile-photos { display: flex; flex: 0 0 auto; align-self: flex-start; gap: 1rem; width: calc(100% - 2rem); margin: 3rem 0 0 2rem; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+  .welcome-mobile-photos img { width: 67vw; max-width: 25rem; flex: 0 0 auto; aspect-ratio: 4 / 5; object-fit: cover; scroll-snap-align: start; }
   .villas-grid { width: calc(100% - 1rem); margin-left: 1rem; overflow: hidden; }
   .villas-grid .swiper-wrapper { width: auto; }
   .villa-card { flex: 0 0 auto; height: auto; aspect-ratio: 16 / 22; }
   .villa-card:hover { flex-grow: 0; }
-  .villa-card__details { opacity: 1; transform: none; }
+  .villa-card__content { opacity: 1; transform: none; pointer-events: auto; }
   .concierge-layout { grid-template-columns: 1fr; }
 }
 
@@ -206,6 +207,14 @@
 .concierge-layout > * { min-width: 0; }
 .concierge-swiper { width: 100%; min-width: 0; }
 .experience-mobile { display: none; }
+
+/* Swiper's unlayered slide styles override component height and transitions.
+   Desktop flex expansion needs its own transition, including on pointer exit. */
+@media (min-width: 1025px) {
+  .villas-grid .villa-card { height: clamp(28rem, 33.333vw, 40rem); transition: flex-grow .8s cubic-bezier(.4, 0, .2, 1); }
+  .villas-grid .villa-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+}
+
 .reviews-swiper .swiper-pagination-bullet,
 .reviews-swiper .swiper-pagination-bullet-active { background: var(--color-moss); }
 
@@ -214,8 +223,8 @@
   .villa-card:focus-within { flex-grow: 3; }
   .villa-card:hover img,
   .villa-card:focus-within img { transform: scale(1.04); }
-  .villa-card:hover .villa-card__details,
-  .villa-card:focus-within .villa-card__details { opacity: 1; transform: none; }
+  .villa-card:hover .villa-card__content,
+  .villa-card:focus-within .villa-card__content { opacity: 1; transform: none; pointer-events: auto; }
 }
 
 @media (max-width: 768px) {
@@ -224,25 +233,35 @@
   .header-book { min-height: 2.25rem; margin-right: .25rem; padding: .55rem 1rem; font-size: .65rem; }
   .menu-toggle { width: 2.75rem; height: 2.75rem; }
   .menu-toggle svg { width: 2rem; }
-  .menu-overlay { grid-template-rows: 4.75rem 1fr 2.5rem; }
+  .menu-overlay { grid-template-rows: 4.75rem minmax(0, 1fr) 4rem; }
   .menu-overlay__top { padding-inline: .75rem; }
   .menu-overlay__logo .custom-logo { max-width: 7.5rem; max-height: 3.5rem; }
-  .menu-overlay__body { grid-template-columns: 2fr 1fr; }
-  .menu-overlay__media { margin: .45rem; }
-  .menu-overlay__nav { padding: .5rem .35rem; }
-  .overlay-menu { gap: clamp(.25rem, 1.1vh, .65rem); }
-  .overlay-menu a { font-size: clamp(.9rem, 4.1vw, 1.2rem); }
-  .menu-overlay__footer { padding-inline: .75rem; }
-  .menu-overlay__footer svg { width: .9rem; }
+  .menu-overlay__body { grid-template-columns: 1fr; overflow-y: auto; }
+  .menu-overlay__media { display: none; }
+  .menu-overlay__nav { padding: 1.25rem 1rem; }
+  .overlay-menu { gap: clamp(.5rem, 1.4vh, .875rem); }
+  .overlay-menu a { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .menu-overlay__footer { gap: .5rem; padding-inline: .75rem; }
+  .menu-overlay__footer a { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; }
+  .menu-overlay__footer svg { width: 1.5rem; height: 1.5rem; }
   .display-title { line-height: 1.03; }
+  .welcome-section .display-title { font-size: clamp(2.75rem, 11.5vw, 3.25rem); }
+  .villas-section .display-title { font-size: clamp(2.5rem, 10.2vw, 2.875rem); }
+  .about-section .display-title,
+  .concierge-layout .display-title,
+  .experiences-section .display-title { font-size: clamp(3rem, 12.4vw, 3.5rem); }
   .map-image { aspect-ratio: 131 / 110; }
   .experience-layout { display: none; }
   .experience-mobile { display: block; }
   .experience-mobile .swiper-slide { width: 78%; }
   .experience-mobile img { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; }
-  .review-shell__title { width: 75%; max-width: none; }
+  .experience-mobile h3 { font-size: 2rem; }
+  .concierge-layout .swiper-controls { display: none; }
+  .review-shell__title { width: 85%; max-width: none; padding-inline: .5rem; font-size: clamp(1.5rem, 6vw, 1.75rem); line-height: 1.1; }
+  .review-quote { font-size: 1.5rem; }
   .footer-menu { gap: .75rem 1rem; }
   .footer-menu li { gap: 1rem; }
+  .footer-menu a { font-size: .75rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
